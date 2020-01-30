@@ -18,12 +18,7 @@ class Usuario_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function set_user($usr = FALSE){
-		$query = $this->db->get_where('usr', array('usr' => $usr));
-		return $query->row_array();
-	}
-	public function set_news()
-	{
+	public function create_user($usr = FALSE){
 		$this->load->helper('url');
 		$data = array(
 			'usr' => $this->input->post('usuario'),
@@ -33,10 +28,28 @@ class Usuario_model extends CI_Model {
 			'nome' => $this->input->post('nome'),
 			'cpf' => $this->input->post('cpf'),
 			'telefone' => $this->input->post('telefone'),
-			'telefone' => $this->input->post('rede_social')
+			'rede_social' => $this->input->post('rede_social')
 		);
 		
 		return $this->db->insert('usr', $data);
 	}
 
+	public function update_user($usr){
+		$this->load->helper('url');
+		$data = array(
+			'usr' => $this->input->post('usuario'),
+			'pass' => $this->input->post('senha'),
+			'nivel_permissao' => $this->input->post('acesso'),
+			'email' => $this->input->post('email'),
+			'nome' => $this->input->post('nome'),
+			'cpf' => $this->input->post('cpf'),
+			'telefone' => $this->input->post('telefone'),
+			'rede_social' => $this->input->post('rede_social')
+		);
+		$this->db->update('usr', $data, array('usr' => $usr));
+	}
+
+	public function delete_user($id_usr){
+		$this->db->delete('usr', array('usr' => $id_usr));
+	}
 }

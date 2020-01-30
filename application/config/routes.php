@@ -22,35 +22,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	https://codeigniter.com/user_guide/general/routing.html
 |
 | -------------------------------------------------------------------------
-| RESERVED ROUTES
-| -------------------------------------------------------------------------
-|
-| There are three reserved routes:
-|
-|	$route['default_controller'] = 'welcome';
-|
-| This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
-| would be loaded.
-|
-|	$route['404_override'] = 'errors/page_missing';
-|
-| This route will tell the Router which controller/method to use if those
-| provided in the URL cannot be matched to a valid route.
-|
-|	$route['translate_uri_dashes'] = FALSE;
-|
-| This is not exactly a route, but allows you to automatically route
-| controller and method names that contain dashes. '-' isn't a valid
-| class or method name character, so it requires translation.
-| When you set this option to TRUE, it will replace ALL dashes in the
-| controller and method URI segments.
-|
-| Examples:	my-controller/index	-> my_controller/index
-|		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'pages/view';
+
+$route['palavras'] = 'palavras/index';
+$route['palavras/ver'] = 'palavras/index';
+$route['palavras/ver/(:)'] = 'palavras/ver/$1';
+$route['palavras/criar'] = 'palavras/criar';
+$route['palavras/editar'] = 'palavras/index';
+$route['palavras/editar/(:any)'] = 'palavras/editar/$1';
+$route['palavras/apagar'] = 'palavras/index';
+$route['palavras/apagar/(:any)'] = 'palavras/apagar/$1';
+
+$route['referencias'] = 'referencias/index';
+$route['referencias/criar'] = 'referencias/criar';
+$route['referencias/editar'] = 'referencias/index';
+$route['referencias/editar/(:any)'] = 'referencias/editar/$1';
+$route['referencias/apagar'] = 'referencias/index';
+$route['referencias/apagar/(:any)'] = 'referencias/apagar/$1';
+
+$route['usuarios'] = 'usuarios/index';
 $route['usuarios/criar'] = 'usuarios/criar';
+$route['usuarios/editar'] = 'usuarios/index';
+$route['usuarios/editar/(:any)'] = 'usuarios/editar/$1';
+$route['usuarios/apagar'] = 'usuarios/index';
+$route['usuarios/apagar/(:any)'] = 'usuarios/apagar/$1';
+
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

@@ -1,1 +1,1 @@
-<h2>There's a page here!</h2>
+<?php echo "<h2>There's a page here! It's name is " . $title . "</h2>"?>

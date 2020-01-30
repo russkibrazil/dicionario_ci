@@ -1,11 +1,9 @@
 <?php
     if ($salvo)
         echo "<div class=''> <h3>Item salvo!</h3> </div>";
+    echo validation_errors();
+    echo form_open('usuarios/criar'); 
 ?>
-
-<?php echo validation_errors(); ?>
-
-<?php echo form_open('usuarios/criar'); ?>
 
     <label for="usuario">Usuário</label>
     <input type="text" name="usuario" size="30" /><br />
@@ -20,10 +18,12 @@
     <?php echo form_error('confirmasenha'); ?>
 
     <label for="acesso">Nível de acesso</label>
-    <?php $options = array('ADM' => 'Administrador', 'EDT' => 'Editor', 'USR' => 'Usuário');
+    <?php 
+        $options = array('ADM' => 'Administrador', 'EDT' => 'Editor', 'USR' => 'Usuário');
         echo form_dropdown('acesso',$options);
-        ?> <br>
-    <?php echo form_error('acesso'); ?>
+        echo "<br>";
+        echo form_error('acesso'); 
+    ?>
     
     <label for="nome">Nome</label>
     <input type="text" name="nome" size="30"><br />
@@ -41,10 +41,10 @@
     <input type="text" name="telefone" size="30"><br />
     <?php echo form_error('telefone'); ?>
     
-    <label for="rede_social">Senha</label>
+    <label for="rede_social">Rede Social</label>
     <input type="text" name="rede_social" size="30"><br />
     <?php echo form_error('rede_social'); ?>
 
-    <input type="submit" name="submit" value="Criar" />
+    <input type="submit" name="submit" value="Criar" /><a href="../">Cancelar</a>
     
 </form>
