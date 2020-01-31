@@ -69,7 +69,7 @@ class Referencias extends CI_Controller {
 		}
         }
 
-        public function apagar($referencia){
+        public function delete_referencia($referencia){
                 $this->referencia_model->delete_referencia($referencia);
         }
 }

@@ -10,7 +10,7 @@ class Palavras extends CI_Controller {
 
 	public function index()
 	{
-		$data['palavras'] = $this->palavra_model->get_user();
+		$data['palavras'] = $this->palavra_model->get_palavra();
 		$this->load->view('templates/menu_superior');
 		$this->load->view('palavras/lista', $data);
 	}
@@ -48,7 +48,7 @@ class Palavras extends CI_Controller {
 		else
 		{
 			$salvo = true;
-			$this->palavra_model->create_user();
+			$this->palavra_model->create_palavra();
 			$this->load->view('templates/menu_superior');
 			$this->load->view('palavras/criar', [$salvo]);
 		}
@@ -58,7 +58,7 @@ class Palavras extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$data['palavra'] = $this->palavra_model->get_user($usr);
+		$data['palavra'] = $this->palavra_model->get_palavra($usr);
 
         $this->form_validation->set_rules('lema', 'Nome de usuário', 'required|alpha');
         $this->form_validation->set_rules('sublema', 'Sub Lema', 'alpha');
@@ -76,13 +76,13 @@ class Palavras extends CI_Controller {
 		}
 		else
 		{
-			$this->palavra_model->update_user($usr);
-			$data['palavra'] = $this->palavra_model->get_user();
+			$this->palavra_model->update_palavra($usr);
+			$data['palavra'] = $this->palavra_model->get_palavra();
 			$this->load->view('templates/menu_superior');
 			$this->load->view('palavras/lista', $data);
 		}
 	}
-	public function apagar($usr){
+	public function delete_palavra($usr){
 		$this->palavra_model->apagar($usr);
     }
 }

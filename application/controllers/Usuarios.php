@@ -74,12 +74,12 @@ class Usuarios extends CI_Controller {
 		else
 		{
 			$this->usuario_model->update_user($usr);
-			$data['usuario'] = $this->usuario_model->get_user();
+			$data['usuarios'] = $this->usuario_model->get_user();
 			$this->load->view('templates/menu_superior');
 			$this->load->view('usuarios/lista', $data);
 		}
 	}
-	public function apagar($usr){
+	public function delete_user($usr){
 		$this->usuario_model->apagar($usr);
 	}
 }

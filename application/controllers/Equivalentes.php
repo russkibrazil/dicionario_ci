@@ -1,63 +1,87 @@
 <?php
-class Equivalente_model extends CI_Model {
+class Usuarios extends CI_Controller {
 
 	public function __construct()
 	{
-		$this->load->database();
+			parent::__construct();
+			$this->load->model('equivalente_model');
+			$this->load->helper('url_helper');
 	}
 
-	public function get_equivalencia($eqv)
+	public function index($origem)
 	{
-		if ($eqv === FALSE)
+		$data['equivalentes'] = $this->equivalente_model->get_equivalente($origem);
+		$this->load->view('templates/menu_superior');
+		$this->load->view('equivalentes/lista', $data);
+	}
+
+	public function view($usr = NULL)
+	{
+			//$data['usr_item'] = $this->usuario_model->get_usr($usr);
+	}
+
+	public function criar($o)
+	{
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('equivalente', 'Lema Equivalente', 'required');
+		$this->form_validation->set_rules('napresentacao', 'Número de Apresentação', 'required|is_natural');
+		$this->form_validation->set_rules('heterogenerico', 'Heterogenérico');
+		$this->form_validation->set_rules('hetetotonico', 'Heterotônico');
+		$this->form_validation->set_rules('heterossemantico', 'Heterossemântico');
+		$this->form_validation->set_rules('exemplo', 'Exemplo de Uso', '');
+		$this->form_validation->set_rules('exemplot', 'Exemplo Traduzido', '');
+		$this->form_validation->set_rules('marcauso', 'Marca de Uso', '');
+		$this->form_validation->set_rules('notas_gramatica', 'Notas Gramaticais', '');
+		$this->form_validation->set_rules('notas_cultura', 'Notas Culturais', '');
+
+		if ($this->form_validation->run() === FALSE)
 		{
-			$query = $this->db->get('equivalencias');
-			return $query->result_array();
+			$salvo = false;
+			$this->load->view('templates/menu_superior');
+			$this->load->view('equivalentes/criar', [$salvo]);
 		}
-
-		$query = $this->db->get_where('usr', array('usr' => $eqv));
-		return $query->row_array();
+		else
+		{
+			$salvo = true;
+			$this->equivalente_model->create_equivalente($o);
+			$this->load->view('templates/menu_superior');
+			$this->load->view('equivalentes/criar', [$salvo]);
+		}
 	}
 
-	public function create_equivalencia($usr = FALSE){
-		$this->load->helper('url');
-		$data = array(
-			'Origem' => $this->input->post('origem'),
-            'equivalente' => $this->input->post('equivalente'),
-            'heterogenerico' => $this->input->post('heterogenerico'),
-			'heterotonico' => $this->input->post('heterotonico'),
-			'heterossemantico' => $this->input->post('heterossemantico'),
-			'Exemplo' => $this->input->post('exemplo'),
-			'Exemplo_Traduzido' => $this->input->post('exemplot'),
-			'Referencia' => $this->input->post('referencia'),
-            'MarcaUso' => $this->input->post('marcauso'),
-            'nApresentacao' => $this->input->post('napresentacao'),
-            'NCultural' => $this->input->post('notas_cultura'),
-            'NGramatical' => $this->input->post('notas_gramatica')
-		);
-		
-		return $this->db->insert('equivalencias', $data);
-	}
+	public function editar($o, $e){
+		$this->load->helper('form');
+		$this->load->library('form_validation');
 
-	public function update_equivalencia($eqv){
-		$this->load->helper('url');
-		$data = array(
-			'Origem' => $this->input->post('origem'),
-            'equivalente' => $this->input->post('equivalente'),
-            'heterogenerico' => $this->input->post('heterogenerico'),
-			'heterotonico' => $this->input->post('heterotonico'),
-			'heterossemantico' => $this->input->post('heterossemantico'),
-			'Exemplo' => $this->input->post('exemplo'),
-			'Exemplo_Traduzido' => $this->input->post('exemplot'),
-			'Referencia' => $this->input->post('referencia'),
-            'MarcaUso' => $this->input->post('marcauso'),
-            'nApresentacao' => $this->input->post('napresentacao'),
-            'NCultural' => $this->input->post('notas_cultura'),
-            'NGramatical' => $this->input->post('notas_gramatica')
-		);
-		$this->db->update('equivalencias', $data, array('usr' => $eqv));
-	}
+		$data['equivalente'] = $this->equivalente_model->get_equivalente($o,$e);
 
-	public function delete_equivalencia($id_usr){
-		$this->db->delete('equivalencias', array('usr' => $id_usr));
+		$this->form_validation->set_rules('equivalente', 'Lema Equivalente', 'required');
+		$this->form_validation->set_rules('napresentacao', 'Número de Apresentação', 'required|is_natural');
+		$this->form_validation->set_rules('heterogenerico', 'Heterogenérico');
+		$this->form_validation->set_rules('hetetotonico', 'Heterotônico');
+		$this->form_validation->set_rules('heterossemantico', 'Heterossemântico');
+		$this->form_validation->set_rules('exemplo', 'Exemplo de Uso', '');
+		$this->form_validation->set_rules('exemplot', 'Exemplo Traduzido', '');
+		$this->form_validation->set_rules('marcauso', 'Marca de Uso', '');
+		$this->form_validation->set_rules('notas_gramatica', 'Notas Gramaticais', '');
+		$this->form_validation->set_rules('notas_cultura', 'Notas Culturais', '');
+
+		if ($this->form_validation->run() === FALSE)
+		{
+			$this->load->view('templates/menu_superior');
+			$this->load->view('equivalentes/editar', $data);
+		}
+		else
+		{
+			$this->equivalente_model->update_equivalente($o,$e);
+			$data['equivalente'] = $this->equivalente_model->get_equivalente();
+			$this->load->view('templates/menu_superior');
+			$this->load->view('equivalentes/lista', $data);
+		}
+	}
+	public function delete_equivalente($o, $e){
+		$this->equivalente_model->apagar($o, $e);
 	}
 }

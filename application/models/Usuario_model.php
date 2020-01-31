@@ -18,7 +18,7 @@ class Usuario_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function create_user($usr = FALSE){
+	public function create_user(){
 		$this->load->helper('url');
 		$data = array(
 			'usr' => $this->input->post('usuario'),

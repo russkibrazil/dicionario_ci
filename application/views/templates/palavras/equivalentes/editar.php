@@ -1,8 +1,6 @@
-<?php
-    if ($salvo)
-        echo "<div class=''> <h3>Item salvo!</h3> </div>";
+<?php 
     echo validation_errors();
-    echo form_open('equivalentes/criar'); 
+    echo form_open('equivalentes/editar'); 
 ?>
 
     <label for="equivalente">Lema Equivalente</label>
