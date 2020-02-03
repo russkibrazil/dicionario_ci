@@ -35,7 +35,7 @@ class Palavras extends CI_Controller {
         $this->form_validation->set_rules('classe_gramatical', 'Classe Gramatical', 'required');
         $this->form_validation->set_rules('genero', 'Gênero', 'required');
         $this->form_validation->set_rules('idioma', 'Idioma', 'required');
-        $this->form_validation->set_rudles('definicao', 'Definição', 'alpha_numeric_spaces');
+        $this->form_validation->set_rules('definicao', 'Definição', 'alpha_numeric_spaces');
         $this->form_validation->set_rules('notas_cultura', 'Notas Culturais', 'alpha_numeric_spaces');
         $this->form_validation->set_rules('notas_gramatica', 'Notas Gramaticais', 'alpha_numeric_spaces');
 

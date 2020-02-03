@@ -7,8 +7,8 @@ class Pages extends CI_Controller {
 		$this->load->model('palavra_model');
 		$this->load->model('busca_model');
 		$this->load->model('fraseologia_model');
-		$this->load->model('conjugacaopt_model');
-		$this->load->model('conjugacaoen_model');
+		$this->load->model('conjugacaoPt_model');
+		$this->load->model('conjugacaoEn_model');
 		$this->load->helper('url_helper');
 	}
 

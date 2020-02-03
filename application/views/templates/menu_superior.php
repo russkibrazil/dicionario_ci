@@ -1,4 +1,7 @@
 <html>
+	<head>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	</head>
     <body>
         <nav class="navbar nav-fill sticky-top navbar-expand-lg navbar-dark bg-secondary">
               <a class="navbar-brand">Projeto Interlex</a>
@@ -24,10 +27,6 @@
                     <a (click)="onClickUsuarios()" class="nav-link">Usuários</a>
                   </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
-                  <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-                </form>
                 <a class="btn btn-link">Entrar</a>
               </div>
           </nav>
