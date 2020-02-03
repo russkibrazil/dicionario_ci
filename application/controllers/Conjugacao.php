@@ -50,7 +50,7 @@ class Conjugacao extends CI_Controller {
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/menu_superior');
-            $this->load->view('conjugacao/editar_pt', $data);
+            $this->load->view('pages/palavra/conjugacao/editar_pt', $data);
         }
         else
         {
@@ -85,7 +85,7 @@ class Conjugacao extends CI_Controller {
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/menu_superior');
-            $this->load->view('conjugacao/editar_en', $data);
+            $this->load->view('pages/palavra/conjugacao/editar_en', $data);
         }
         else
         {
@@ -113,7 +113,7 @@ class Conjugacao extends CI_Controller {
         if ($this->form_validation->run() === FALSE)
         {
             $this->load->view('templates/menu_superior');
-            $this->load->view('conjugacao/editar_es', $data);
+            $this->load->view('pages/palavra/conjugacao/editar_es', $data);
         }
         else
         {

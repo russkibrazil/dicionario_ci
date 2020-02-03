@@ -12,7 +12,7 @@ class Usuarios extends CI_Controller {
 	{
 		$data['equivalentes'] = $this->equivalente_model->get_equivalente($origem);
 		$this->load->view('templates/menu_superior');
-		$this->load->view('equivalentes/lista', $data);
+		$this->load->view('pages/palavra/equivalentes/lista', $data);
 	}
 
 	public function view($usr = NULL)
@@ -40,14 +40,14 @@ class Usuarios extends CI_Controller {
 		{
 			$salvo = false;
 			$this->load->view('templates/menu_superior');
-			$this->load->view('equivalentes/criar', [$salvo]);
+			$this->load->view('pages/palavra/equivalentes/criar', [$salvo]);
 		}
 		else
 		{
 			$salvo = true;
 			$this->equivalente_model->create_equivalente($o);
 			$this->load->view('templates/menu_superior');
-			$this->load->view('equivalentes/criar', [$salvo]);
+			$this->load->view('pages/palavra/equivalentes/criar', [$salvo]);
 		}
 	}
 
@@ -71,14 +71,14 @@ class Usuarios extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/menu_superior');
-			$this->load->view('equivalentes/editar', $data);
+			$this->load->view('pages/palavra/equivalentes/editar', $data);
 		}
 		else
 		{
 			$this->equivalente_model->update_equivalente($o,$e);
 			$data['equivalente'] = $this->equivalente_model->get_equivalente();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('equivalentes/lista', $data);
+			$this->load->view('pages/palavra/equivalentes/lista', $data);
 		}
 	}
 	public function delete_equivalente($o, $e){

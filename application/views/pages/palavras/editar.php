@@ -1,6 +1,6 @@
 <?php
     echo validation_errors();
-    echo form_open('palavras/editar'); 
+    echo form_open('pages/palavras/editar'); 
 ?>
 <label for="lema">Lema</label>
 <input type="text" name="lema" size="35" value="<?php echo $palavra['']; ?>">

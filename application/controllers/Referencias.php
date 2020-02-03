@@ -12,7 +12,7 @@ class Referencias extends CI_Controller {
         {
                 $data['referencias'] = $this->referencia_model->get_user();
                 $this->load->view('templates/menu_superior');
-		$this->load->view('referencias/lista', $data);
+		$this->load->view('pages/palavralista', $data);
         }
 
         public function view($r = NULL)
@@ -33,14 +33,14 @@ class Referencias extends CI_Controller {
 		{
 			$salvo = false;
 			$this->load->view('templates/menu_superior');
-			$this->load->view('referencias/criar', [$salvo]);
+			$this->load->view('pages/palavracriar', [$salvo]);
 		}
 		else
 		{
 			$salvo = true;
 			$this->usuario_model->set_user();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('referencias/criar', [$salvo]);
+			$this->load->view('pages/palavracriar', [$salvo]);
 		}
         }
 
@@ -58,14 +58,14 @@ class Referencias extends CI_Controller {
                 if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/menu_superior');
-			$this->load->view('referencias/editar', $data);
+			$this->load->view('pages/palavraeditar', $data);
 		}
 		else
 		{
 			$this->usuario_model->set_referencia($referencia);
 			$data['referencia'] = $this->usuario_model->get_referencia();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('referencias/lista', $data);
+			$this->load->view('pages/palavralista', $data);
 		}
         }
 

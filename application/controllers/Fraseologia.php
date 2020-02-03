@@ -12,7 +12,7 @@ class Fraseologia extends CI_Controller {
 	{
 		$data['fraseologia'] = $this->fraseologia_model->get_frase($id);
 		$this->load->view('templates/menu_superior');
-		$this->load->view('fraseologia/lista', $data);
+		$this->load->view('pages/palavra/fraseologia/lista', $data);
 	}
 
 	public function view($usr = NULL)
@@ -37,14 +37,14 @@ class Fraseologia extends CI_Controller {
 		{
 			$salvo = false;
 			$this->load->view('templates/menu_superior');
-			$this->load->view('fraseologia/criar', [$salvo]);
+			$this->load->view('pages/palavra/fraseologia/criar', [$salvo]);
 		}
 		else
 		{
 			$salvo = true;
 			$this->fraseologia_model->create_frase();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('fraseologia/criar', [$salvo]);
+			$this->load->view('pages/palavra/fraseologia/criar', [$salvo]);
 		}
 	}
 
@@ -65,14 +65,14 @@ class Fraseologia extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/menu_superior');
-			$this->load->view('fraseologia/editar', $data);
+			$this->load->view('pages/palavra/fraseologia/editar', $data);
 		}
 		else
 		{
 			$this->fraseologia_model->update_frase($id, $fo, $fe, $fc);
 			$data['fraseologia'] = $this->fraseologia_model->get_frase();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('fraseologia/lista', $data);
+			$this->load->view('pages/palavra/fraseologia/lista', $data);
 		}
 	}
 	public function delete_frase($id, $fo, $fe, $fc){

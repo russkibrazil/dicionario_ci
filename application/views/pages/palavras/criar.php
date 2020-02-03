@@ -2,7 +2,7 @@
     if ($salvo)
         echo "<div class=''> <h3>Item salvo!</h3> </div>";
     echo validation_errors();
-    echo form_open('palavras/criar'); 
+    echo form_open('pages/palavra/criar'); 
 ?>
 <label for="lema">Lema</label>
 <input type="text" name="lema" size="35">
