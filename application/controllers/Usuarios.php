@@ -12,7 +12,7 @@ class Usuarios extends CI_Controller {
 	{
 		$data['usuarios'] = $this->usuario_model->get_user();
 		$this->load->view('templates/menu_superior');
-		$this->load->view('usuarios/lista', $data);
+		$this->load->view('pages/usuarios/lista', $data);
 	}
 
 	public function view($usr = NULL)
@@ -39,14 +39,14 @@ class Usuarios extends CI_Controller {
 		{
 			$salvo = false;
 			$this->load->view('templates/menu_superior');
-			$this->load->view('usuarios/criar', [$salvo]);
+			$this->load->view('pages/usuarios/criar', [$salvo]);
 		}
 		else
 		{
 			$salvo = true;
 			$this->usuario_model->create_user();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('usuarios/criar', [$salvo]);
+			$this->load->view('pages/usuarios/criar', [$salvo]);
 		}
 	}
 
@@ -69,14 +69,14 @@ class Usuarios extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/menu_superior');
-			$this->load->view('usuarios/editar', $data);
+			$this->load->view('pages/usuarios/editar', $data);
 		}
 		else
 		{
 			$this->usuario_model->update_user($usr);
 			$data['usuarios'] = $this->usuario_model->get_user();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('usuarios/lista', $data);
+			$this->load->view('pages/usuarios/lista', $data);
 		}
 	}
 	public function delete_user($usr){

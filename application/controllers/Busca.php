@@ -1,5 +1,5 @@
 <?php
-class Pages extends CI_Controller {
+class Busca extends CI_Controller {
 
 	public function __construct()
 	{
@@ -19,7 +19,7 @@ class Pages extends CI_Controller {
 		$this->form_validation->set_rules('busca', 'Chave de Busca', 'required|alpha_numeric_spaces');
 		if ($this->form_validation->run() === FALSE){
 			$this->load->view('templates/menu_superior');
-			$this->load->view('busca/form_busca');
+			$this->load->view('pages/busca/form_busca');
 		}else{
 			$this->lista_resultados($this->input->post('busca'));
 		}
@@ -29,7 +29,7 @@ class Pages extends CI_Controller {
 		$data['resultados'] = $this->palavra_model->get_palavra_lema($busca);
 
 		$this->load->view('templates/menu_superior');
-		$this->load->view('busca/lista', $data);
+		$this->load->view('pages/busca/lista', $data);
 	}
 
 	public function ver_resultado($id){
@@ -43,7 +43,7 @@ class Pages extends CI_Controller {
 		$data['fraseologia'] = $this->fraseologia_model->get_mixed_fraseologia($res);
 
 		$this->load->view('templates/menu_superior');
-		$this->load->view('busca/resultado_blocos', $data);
+		$this->load->view('pages/busca/resultado_blocos', $data);
 	}
 
 	public function view($page = 'home')

@@ -12,7 +12,7 @@ class Palavras extends CI_Controller {
 	{
 		$data['palavras'] = $this->palavra_model->get_palavra();
 		$this->load->view('templates/menu_superior');
-		$this->load->view('palavras/lista', $data);
+		$this->load->view('pages/palavras/lista', $data);
 	}
 
 	public function ver($plv)
@@ -22,7 +22,7 @@ class Palavras extends CI_Controller {
         $data['fraseologia'] = $this->fraseologia_model->get_frase();
         
         $this->load->view('templates/menu_superior');
-		$this->load->view('palavras/ver', $data);
+		$this->load->view('pages/palavras/ver', $data);
 	}
 
 	public function criar()
@@ -43,14 +43,14 @@ class Palavras extends CI_Controller {
 		{
 			$salvo = false;
 			$this->load->view('templates/menu_superior');
-			$this->load->view('palavras/criar', [$salvo]);
+			$this->load->view('pages/palavras/criar', [$salvo]);
 		}
 		else
 		{
 			$salvo = true;
 			$this->palavra_model->create_palavra();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('palavras/criar', [$salvo]);
+			$this->load->view('pages/palavras/criar', [$salvo]);
 		}
 	}
 
@@ -72,14 +72,14 @@ class Palavras extends CI_Controller {
 		if ($this->form_validation->run() === FALSE)
 		{
 			$this->load->view('templates/menu_superior');
-			$this->load->view('palavras/editar', $data);
+			$this->load->view('pages/palavras/editar', $data);
 		}
 		else
 		{
 			$this->palavra_model->update_palavra($usr);
 			$data['palavra'] = $this->palavra_model->get_palavra();
 			$this->load->view('templates/menu_superior');
-			$this->load->view('palavras/lista', $data);
+			$this->load->view('pages/palavras/lista', $data);
 		}
 	}
 	public function delete_palavra($usr){
