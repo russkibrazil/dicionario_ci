@@ -3,6 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 $route['default_controller'] = 'pages/view';
 
+$route['busca'] = 'pages/index';
+$route['busca/resultado/(:any)'] = 'pages/lista_resultados/$1';
+$route['busca/visualizar/(:num)'] = 'pages/ver_resultado/$1';
+
 $route['palavras'] = 'palavras/index';
 //$route['palavras/ver'] = 'palavras/index';
 $route['palavras/ver/(:num)'] = 'palavras/ver/$1';

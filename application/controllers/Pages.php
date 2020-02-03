@@ -13,7 +13,16 @@ class Pages extends CI_Controller {
 	}
 
 	public function index(){
-		//contém o form de busca
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('busca', 'Chave de Busca', 'required|alpha_numeric_spaces');
+		if ($this->form_validation->run() === FALSE){
+			$this->load->view('templates/menu_superior');
+			$this->load->view('busca/form_busca');
+		}else{
+			$this->lista_resultados($this->input->post('busca'));
+		}
 	}
 
 	public function lista_resultados($busca){
