@@ -14,8 +14,13 @@ class Fraseologia_model extends CI_Model {
 			return $query->result_array();
 		}
 
-		$query = $this->db->get_where('fraseologia', array('idPalavra' => $fraseO, 'FraseOrig' => $fraseO, 'FraseEquiv' => $fe, 'Categoria' => $fc));
+		$query = $this->db->get_where('fraseologia', array('IdPalavra' => $fraseO, 'FraseOrig' => $fraseO, 'FraseEquiv' => $fe, 'Categoria' => $fc));
 		return $query->row_array();
+	}
+	public function get_mixed_fraseologia($arr_id){
+		$this->db->where_in('IdPalavra', $arr_id);
+		$query = $this->db->get('fraseologia');
+		return $query->result_array();
 	}
 	public function create_user($id_palavra){
 		$this->load->helper('url');

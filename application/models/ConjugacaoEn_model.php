@@ -1,18 +1,24 @@
 <?php
-class ConjugacaoPt_model extends CI_Model {
+class ConjugacaoEn_model extends CI_Model {
 
 	public function __construct()
 	{
 		$this->load->database();
 	}
 
-	public function get_ConjugacaoPt($id)
+	public function get_ConjugacaoEn($id)
 	{     
-		$query = $this->db->get_where('conjugacaoPt', array('idPalavra' => $id));
+		$query = $this->db->get_where('conjugacaoEn', array('idPalavra' => $id));
 		return $query->row_array();
 	}
 
-	public function update_ConjugacaoPt($id){
+	public function get_mixed_ConjugacaoEn($lookup){
+		$this->db->where_in('idPalavra', $lookup);
+		$query = $this->db->get('conjugacaoEn');
+		return $query->result_array();
+	}
+
+	public function update_ConjugacaoEn($id){
 		$this->load->helper('url');
 		$data = array(
 			'ConstrPresente' => $this->input->post('cpresente'),
