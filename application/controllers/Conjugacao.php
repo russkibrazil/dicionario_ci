@@ -5,6 +5,10 @@ class Conjugacao extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper('url_helper');
+        if (! $this->session->userdata['logged_in']) {
+            redirect('/login');
+            return false;
+        }
     }
 
     public function index($id, $lng){

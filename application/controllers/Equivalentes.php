@@ -1,11 +1,15 @@
 <?php
-class Usuarios extends CI_Controller {
+class Equivalentes extends CI_Controller {
 
 	public function __construct()
 	{
-			parent::__construct();
-			$this->load->model('equivalente_model');
-			$this->load->helper('url_helper');
+		parent::__construct();
+		$this->load->model('equivalente_model');
+		$this->load->helper('url_helper');
+		if (! $this->session->userdata['logged_in']) {
+			redirect('/login');
+			return false;
+		}
 	}
 
 	public function index($origem)

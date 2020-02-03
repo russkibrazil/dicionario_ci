@@ -6,6 +6,7 @@ $route['default_controller'] = 'busca/view';
 $route['busca'] = 'busca/index';
 $route['busca/resultado/(:any)'] = 'busca/lista_resultados/$1';
 $route['busca/visualizar/(:num)'] = 'busca/ver_resultado/$1';
+$route['login'] ='auth/tentar_login';
 
 $route['palavras'] = 'palavras/index';
 //$route['palavras/ver'] = 'palavras/index';

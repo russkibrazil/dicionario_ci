@@ -52,4 +52,12 @@ class Usuario_model extends CI_Model {
 	public function delete_user($id_usr){
 		$this->db->delete('usr', array('usr' => $id_usr));
 	}
+
+	public function login ($u, $p){
+		$query = $this->db->get_where('usr', array('usr' => $u, 'pass' => $p));
+		if ($query->count > 0)
+			return $query['nivel_permissao'];
+		else
+			return false;
+	}
 }
